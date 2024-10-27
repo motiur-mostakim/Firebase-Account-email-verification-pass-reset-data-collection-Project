@@ -29,10 +29,10 @@ class _NoteViewState extends State<NoteView> {
         onPressed: (){
         Navigator.push(context, MaterialPageRoute(builder: (context)=> AddNote(docid: widget.categoryid)));
       },
-      child: Icon(Icons.add,color: Colors.white,),
+      child: const Icon(Icons.add,color: Colors.white,),
       ),
       appBar: AppBar(
-        title: Text("Note"),
+        title: const Text("Note"),
         actions: [
           IconButton(
             onPressed: ()async{
@@ -41,7 +41,7 @@ class _NoteViewState extends State<NoteView> {
               await FirebaseAuth.instance.signOut();
               Navigator.of(context).pushNamedAndRemoveUntil("login", (route) => false);
             }, 
-            icon: Icon(Icons.exit_to_app)),
+            icon: const Icon(Icons.exit_to_app)),
         ],
       ),
       body: WillPopScope(child: StreamBuilder(
@@ -50,10 +50,10 @@ class _NoteViewState extends State<NoteView> {
            
               // bool isLoading = false;          
            if(snapshot.hasError){
-            return Text("Connection error");
+            return const Text("Connection error");
           }
           if(snapshot.connectionState == ConnectionState.waiting){
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
             
           }
           var docs = snapshot.data!.docs;
@@ -61,7 +61,7 @@ class _NoteViewState extends State<NoteView> {
           // isLoading == true ? Center(child: CircularProgressIndicator()) : 
           GridView.builder(
         itemCount: docs.length,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,
         mainAxisExtent: 165),
          itemBuilder: (context, i){
            return InkWell(
@@ -72,9 +72,9 @@ class _NoteViewState extends State<NoteView> {
                           animType: AnimType.topSlide,
                            showCloseIcon: true,
                           title: 'Error',
-                          titleTextStyle: TextStyle(fontSize: 20,color: Colors.black,fontWeight: FontWeight.w700),
+                          titleTextStyle: const TextStyle(fontSize: 20,color: Colors.black,fontWeight: FontWeight.w700),
                           desc: 'Do you want delete this file',
-                          descTextStyle: TextStyle(fontSize: 17,color: Colors.black,fontWeight: FontWeight.w500),
+                          descTextStyle: const TextStyle(fontSize: 17,color: Colors.black,fontWeight: FontWeight.w500),
                           btnOkText: "Edit Your Data",
                           btnOkOnPress: ()async{
                            Navigator.push(context, MaterialPageRoute(
@@ -99,9 +99,9 @@ class _NoteViewState extends State<NoteView> {
              child: Card(
               child: SingleChildScrollView(
                 child: Container(
-                  padding: EdgeInsets.all(15),
+                  padding: const EdgeInsets.all(15),
                   child: Text("${docs[i]["note"]}",
-                  style: TextStyle(fontSize: 18,color: Colors.black,fontWeight: FontWeight.w700),),
+                  style: const TextStyle(fontSize: 18,color: Colors.black,fontWeight: FontWeight.w700),),
                 ),
               ),
                      ),
